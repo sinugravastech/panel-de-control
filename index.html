@@ -223,42 +223,78 @@ html[data-theme="dark"] .chip-alto{background:var(--accent-soft);color:#b9cbf3;b
 .persona-correo{font-size:12.5px;color:var(--text-3);overflow:hidden;text-overflow:ellipsis}
 .col-ingreso{font-size:12.5px;color:var(--text-3);white-space:nowrap}
 
-/* ── Ficha de una persona (cajón lateral) ───────────────────────────── */
+/* ── Ficha de una persona: una página completa, como la del Portal de Don Aseo.
+   A la izquierda los módulos (y el historial); a la derecha el elegido, con su
+   rol, lo que hace cada rol y «Guardar». ─────────────────────────────────── */
 .fondo{position:fixed;inset:0;z-index:40;background:rgba(9,14,20,.45);animation:aparecer .15s ease}
 .fondo-centro{display:grid;place-items:center;padding:20px 16px;overflow:auto}
 .fondo-arriba{z-index:60}
-.cajon{position:fixed;top:0;right:0;bottom:0;z-index:41;width:min(580px,100%);background:var(--surface);box-shadow:var(--sh-pop);
-  display:flex;flex-direction:column;animation:entrar .2s ease}
 @keyframes aparecer{from{opacity:0}}
-@keyframes entrar{from{transform:translateX(24px);opacity:.4}}
-.ficha-cabeza{display:flex;gap:14px;align-items:flex-start;padding:20px 20px 16px;border-bottom:1px solid var(--border)}
-.ficha-quien{flex:1;min-width:0}
-.ficha-quien h2{font-size:19px;font-weight:700;word-break:break-word}
-.ficha-quien .ficha-correo{color:var(--text-2);word-break:break-all}
-.ficha-quien .ficha-cargo{color:var(--text-3);font-size:13px}
-.ficha-quien .insignias{margin-top:8px}
-.ficha-cuerpo{flex:1;overflow:auto;padding:4px 20px 24px}
-.ficha-seccion{padding:18px 0;border-bottom:1px solid var(--border)}
-.ficha-seccion:last-child{border-bottom:0}
-.ficha-seccion h3{font-size:14px;font-weight:700;margin-bottom:12px}
-.nota{border-radius:var(--radius);padding:10px 12px;font-size:13px;margin-bottom:12px;background:var(--surface-2);color:var(--text-2);border:1px solid var(--border)}
+.ficha-fondo{position:fixed;inset:0;z-index:40;background:var(--bg);overflow-y:auto;animation:aparecer .12s ease}
+.f-pagina{max-width:1280px;margin:0 auto;padding:14px 24px 40px}
+.f-volver{display:inline-flex;align-items:center;gap:6px;border:0;background:none;color:var(--accent);font-weight:700;font-size:14px;cursor:pointer;padding:6px 0 12px}
+.f-volver:hover{text-decoration:underline}
+.f-tarjeta{background:var(--surface);border:1px solid var(--border);border-radius:18px;box-shadow:var(--sh-2);overflow:hidden}
+.f-cab{position:relative;display:flex;gap:18px;align-items:center;padding:24px 78px 22px 26px;flex-wrap:wrap}
+.f-cab .avatar{width:62px;height:62px;font-size:21px}
+.f-nombre{font-size:21px;font-weight:700;display:flex;align-items:center;gap:8px;flex-wrap:wrap;word-break:break-word}
+.f-meta{font-size:13.5px;color:var(--text-2);margin-top:4px;line-height:1.6}
+.f-cerrar{position:absolute;top:18px;right:18px;width:42px;height:42px;border-radius:12px;border:0;background:var(--surface-3);color:var(--text-2);cursor:pointer;display:grid;place-items:center}
+.f-cerrar:hover{background:var(--border);color:var(--text)}
+.f-acciones-cuenta{display:flex;flex-wrap:wrap;gap:8px;padding:12px 26px;border-top:1px solid var(--border);background:var(--surface-2)}
+.f-acc{display:inline-flex;align-items:center;gap:7px;height:38px;border:1.5px solid var(--border-strong);background:var(--surface);color:var(--text-2);border-radius:10px;padding:0 13px;font-size:13.5px;font-weight:700;cursor:pointer}
+.f-acc:hover,.f-acc.activa{border-color:var(--accent);color:var(--accent)}
+.f-acc.activa{background:var(--accent-soft)}
+.f-acc.peligro{color:var(--dang-500)}
+.f-acc.peligro:hover,.f-acc.peligro.activa{border-color:var(--dang-500);background:var(--dang-50)}
+.f-panel{padding:18px 26px 22px;border-top:1px solid var(--border)}
+.f-panel .etiqueta:first-child{margin-top:0}
+.f-panel .campo,.f-panel .clave-caja{max-width:540px}
+.f-panel .fila-botones{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}
+.texto-peligro{color:var(--dang-700);background:var(--dang-50);border-radius:var(--radius);padding:10px 12px;font-size:13px;margin:0 0 4px;max-width:640px}
+.f-suspendida{display:flex;gap:10px;align-items:center;margin-top:16px;padding:12px 16px;border-radius:12px;font-weight:600;
+  background:var(--warn-50);color:var(--warn-700);border:1px solid color-mix(in srgb,var(--warn-500) 25%,transparent)}
+.f-zona{display:grid;grid-template-columns:290px minmax(0,1fr);gap:18px;margin-top:18px;align-items:start}
+.f-nav{position:sticky;top:14px;padding:10px;display:flex;flex-direction:column;gap:3px}
+.n-item{display:flex;gap:12px;align-items:flex-start;text-align:left;border:0;background:none;border-radius:12px;padding:11px 12px;cursor:pointer;width:100%;color:var(--text)}
+.n-item:hover{background:var(--surface-2)}
+.n-item.activo{background:var(--accent-soft);box-shadow:inset 4px 0 0 var(--pc,var(--accent))}
+.n-ico{display:grid;place-items:center;width:32px;height:32px;border-radius:9px;flex:none;background:color-mix(in srgb,var(--pc,var(--accent)) 13%,transparent);color:var(--pc,var(--accent))}
+.n-txt{display:flex;flex-direction:column;min-width:0;gap:2px}
+.n-nom{font-size:14.5px;font-weight:700;display:flex;align-items:center;gap:6px;flex-wrap:wrap}
+.n-pend{font-size:11px;font-weight:700;color:var(--warn-500)}
+.n-est{font-size:12.5px;color:var(--text-3);line-height:1.35}
+.n-est.n-si{color:var(--accent)}
+.n-est.n-admin{color:var(--violet-500)}
+.n-hist{margin-top:6px;border-top:1px solid var(--border);border-radius:0 0 12px 12px;padding-top:14px}
+.f-prog{background:var(--surface);border:1px solid var(--border);border-top:5px solid var(--pc);border-radius:18px;padding:22px 26px 0;box-shadow:var(--sh-2)}
+.f-prog-cab{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:16px;flex-wrap:wrap}
+.f-prog-nombre{font-size:19px;font-weight:700;display:flex;align-items:center;gap:10px}
+.f-prog-nombre .ico{color:var(--pc)}
+.f-rol{max-width:660px}
+.f-fila-rol{display:flex;align-items:baseline;justify-content:space-between;gap:8px}
+.f-fila{font-size:13.5px;font-weight:700;color:var(--text-2)}
+.f-info{display:inline-flex;align-items:center;gap:5px;border:0;background:none;color:var(--accent);font-size:13.5px;font-weight:700;cursor:pointer;padding:0}
+.f-info:hover{text-decoration:underline}
+.f-sel{height:46px;margin-top:7px;font-size:15px}
+.f-ayuda{font-size:13.5px;color:var(--text-2);margin-top:8px;line-height:1.45}
+.r-panel{margin-top:14px;border:1px solid var(--border);border-radius:12px;background:var(--surface-2);padding:6px}
+.r-rol{padding:10px 12px;border-radius:9px}
+.r-rol + .r-rol{margin-top:2px}
+.r-rol.actual{background:var(--accent-soft)}
+.r-nom{font-size:14px;font-weight:700;display:flex;align-items:center;gap:7px}
+.r-tag{font-size:11px;font-weight:700;color:var(--accent);background:var(--surface);border:1px solid var(--brand-100);border-radius:6px;padding:0 7px}
+html[data-theme="dark"] .r-tag{border-color:rgba(90,127,208,.35)}
+.r-txt{font-size:13.5px;color:var(--text-2);line-height:1.45;margin-top:2px}
+.r-nota{font-size:12.5px;color:var(--text-3);line-height:1.45;padding:9px 12px 5px;border-top:1px dashed var(--border);margin-top:4px}
+.nota{border-radius:var(--radius);padding:10px 12px;font-size:13.5px;margin-bottom:14px;background:var(--surface-2);color:var(--text-2);border:1px solid var(--border);max-width:660px}
 .nota-admin{background:var(--violet-50);color:var(--violet-700);border-color:color-mix(in srgb,var(--violet-500) 22%,transparent)}
-.nota-peligro{background:var(--dang-50);color:var(--dang-700);border-color:color-mix(in srgb,var(--dang-500) 22%,transparent)}
-.acceso{display:flex;align-items:center;gap:12px;padding:12px;border:1px solid var(--border);border-radius:var(--radius-lg);margin-bottom:10px;background:var(--surface)}
-.acceso-icono{display:grid;place-items:center;width:40px;height:40px;border-radius:10px;flex:none;background:color-mix(in srgb,var(--mc) 13%,transparent);color:var(--mc)}
-.acceso-txt{flex:1;min-width:0}
-.acceso-txt b{display:block}
-.acceso-txt small{display:block;color:var(--text-3);font-size:12.5px}
-.acceso select.campo{width:170px;height:38px}
-.acciones-cuenta{display:flex;flex-wrap:wrap;gap:8px}
-.acciones-cuenta .btn.activa{border-color:var(--accent);color:var(--accent);background:var(--accent-soft)}
-.btn-borde-peligro{color:var(--dang-500);border-color:color-mix(in srgb,var(--dang-500) 45%,transparent)}
-.btn-borde-peligro:hover:not(:disabled){background:var(--dang-50)}
-.ficha-panel{margin-top:12px;padding:14px;border-radius:var(--radius-lg);background:var(--surface-2);border:1px solid var(--border)}
-.ficha-panel .etiqueta:first-child{margin-top:0}
-.ficha-panel .fila-botones{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}
-.ficha-dato{margin:14px 0 0;font-size:12.5px;color:var(--text-3)}
-.texto-peligro{color:var(--dang-700);background:var(--dang-50);border-radius:var(--radius);padding:10px 12px;font-size:13px;margin:0 0 4px}
+.f-acciones{position:sticky;bottom:0;z-index:2;display:flex;align-items:center;justify-content:flex-end;gap:8px;margin:24px -26px 0;padding:12px 26px 14px;
+  background:var(--surface);border-top:1px solid var(--border);border-radius:0 0 18px 18px}
+.f-sin-guardar{font-size:13px;font-weight:700;color:var(--warn-500);margin-right:auto}
+.f-main.bloqueado .f-prog{opacity:.55;pointer-events:none}
+.f-hist{padding:22px 26px}
+.f-hist-titulo{font-size:17px;font-weight:700;margin-bottom:14px}
 
 /* ── Bitácora e historial ───────────────────────────────────────────── */
 .dia{font-size:12px;font-weight:700;color:var(--text-3);text-transform:uppercase;letter-spacing:.5px;margin:18px 0 8px}
@@ -320,10 +356,23 @@ html[data-theme="dark"] #aviso{background:#e6edf3;color:#0d1319}
   .tabla td.col-persona{margin-bottom:6px}
   .herramientas select.campo{min-width:0;flex:1 1 200px}
   .cuenta-filas{margin-left:0;width:100%}
-  .acceso{flex-wrap:wrap}
-  .acceso select.campo{width:100%}
   .evento{flex-direction:column;gap:2px}
   .evento-hora{width:auto}
+}
+@media (max-width:900px){
+  .f-pagina{padding:10px 12px 30px}
+  .f-cab{padding:20px 64px 18px 18px;gap:14px}
+  .f-cab .avatar{width:52px;height:52px;font-size:18px}
+  .f-nombre{font-size:19px}
+  .f-acciones-cuenta{padding:12px 16px}
+  .f-panel{padding:16px 18px 18px}
+  .f-zona{grid-template-columns:minmax(0,1fr);gap:12px}
+  .f-nav{position:static;flex-direction:row;overflow-x:auto;padding:6px;gap:4px}
+  .n-item{min-width:180px;width:auto;flex-shrink:0}
+  .n-hist{margin-top:0;border-top:0;border-radius:12px;padding-top:11px}
+  .f-prog{padding:18px 16px 0}
+  .f-acciones{margin:20px -16px 0;padding:12px 16px 14px}
+  .f-hist{padding:18px 16px}
 }
 @media (prefers-reduced-motion:reduce){*{animation:none !important;transition:none !important}}
 </style>
@@ -472,9 +521,8 @@ html[data-theme="dark"] #aviso{background:#e6edf3;color:#0d1319}
   <footer class="pie">© <span class="anio"></span> SINUGRAVAS S.A.S. · Panel de control</footer>
 </div>
 
-<!-- Ficha de una persona -->
-<div class="fondo" id="ficha-fondo" hidden></div>
-<aside class="cajon" id="ficha" role="dialog" aria-modal="true" aria-labelledby="ficha-nombre" hidden></aside>
+<!-- Ficha de una persona: ocupa toda la pantalla -->
+<div class="ficha-fondo" id="ficha-fondo" hidden><div id="ficha" role="dialog" aria-modal="true" aria-labelledby="ficha-nombre"></div></div>
 
 <!-- Diálogo (nuevo usuario, mi perfil) y pregunta de confirmación -->
 <div class="fondo fondo-centro" id="dialogo-fondo" hidden><div class="dialogo" id="dialogo" role="dialog" aria-modal="true"></div></div>
@@ -1057,6 +1105,7 @@ function fecha(ts) {
   if (!ts) return '';
   return new Date(ts).toLocaleString('es-CO', { day: 'numeric', month: 'short', year: 'numeric', hour: 'numeric', minute: '2-digit' });
 }
+function fechaCorta(ts) { return ts ? new Date(ts).toLocaleDateString('es-CO', { day: 'numeric', month: 'short', year: 'numeric' }) : ''; }
 function hora(ts) { return new Date(ts).toLocaleTimeString('es-CO', { hour: 'numeric', minute: '2-digit' }); }
 function dia(ts) {
   const d = new Date(ts), hoy = new Date(), ayer = new Date(Date.now() - 86400000);
@@ -1088,6 +1137,7 @@ const ICONOS = {
   buscar: '<circle cx="11" cy="11" r="6.5"/><path d="M20 20l-4.3-4.3"/>',
   mas: '<path d="M12 5v14M5 12h14"/>',
   flecha: '<path d="M5 12h14M13 6l6 6-6 6"/>',
+  flechaIzq: '<path d="M19 12H5M11 6l-6 6 6 6"/>',
   cerrar: '<path d="M6 6l12 12M18 6L6 18"/>',
   candado: '<rect x="5" y="10.5" width="14" height="10" rx="2"/><path d="M8 10.5V7.8a4 4 0 0 1 8 0v2.7"/>',
   llave: '<circle cx="8" cy="15.5" r="3.5"/><path d="M10.6 13L20 3.6M16.5 7.1l2.4 2.4M14.3 9.3l1.8 1.8"/>',
@@ -1291,7 +1341,7 @@ function mostrarIngreso(msg, ok) {
   // Lo que quedó pintado de la sesión anterior no se queda en la página
   $('tarjetas').innerHTML = ''; $('resumen').innerHTML = ''; $('u-filas').innerHTML = ''; $('b-filas').innerHTML = '';
   $('u-buscar').value = ''; $('b-buscar').value = '';
-  cerrarFicha(); cerrarDialogo(); responderPregunta(false);
+  cerrarFicha(true); cerrarDialogo(); responderPregunta(false);
   $('app').hidden = true; $('ingreso').hidden = false;
   modoIngreso('ingreso');
   const e = $('ing-error'), o = $('ing-ok');
@@ -1525,7 +1575,7 @@ function vistaActual() {
 }
 async function mostrarVista() {
   const v = vistaActual();
-  if (v !== 'usuarios') cerrarFicha();
+  if (v !== 'usuarios') cerrarFicha(true);
   $('vista-inicio').hidden = v !== '';
   $('vista-usuarios').hidden = v !== 'usuarios';
   $('vista-bitacora').hidden = v !== 'bitacora';
@@ -1651,10 +1701,7 @@ async function recargarUsuarios() {
   await cargarUsuarios();
   if (!$('vista-usuarios').hidden) pintarUsuarios();
   if (!$('vista-inicio').hidden) pintarInicio();
-  if (fichaId) {
-    if ((usuarios || []).some(x => x.id === fichaId)) { pintarFicha(true); cargarHistorial(fichaId); }
-    else cerrarFicha();
-  }
+  if (fichaId) refrescarFicha();
 }
 
 function claseRol(acciones, esAdmin) {
@@ -1724,48 +1771,69 @@ $('u-filas').addEventListener('keydown', ev => {
   if (tr && (ev.key === 'Enter' || ev.key === ' ')) { ev.preventDefault(); abrirFicha(tr.dataset.id); }
 });
 
-// ── Ficha de una persona ────────────────────────────────────────────
-let fichaPanel = '', fichaAntesDelFoco = null;
+// ── Ficha de una persona: una página completa ───────────────────────
+// Como la del Portal de Don Aseo: a la izquierda los módulos (con lo que la
+// persona tiene en cada uno) y su historial; a la derecha el elegido. El rol se
+// escoge en un borrador y se guarda con «Guardar»; la base vuelve a validar todo
+// y deja la bitácora. El módulo elegido se recuerda al pasar de una persona a otra.
+let fichaPanel = '', fichaAntesDelFoco = null, borradores = {}, originales = {};
+const rolesOcultos = new Set();   // módulos donde se ocultó «¿Qué hace cada rol?» (de entrada se ven)
+let moduloElegido = (() => { try { return localStorage.getItem('sinugravas.panel.ficha.modulo') || ''; } catch (e) { return ''; } })();
 const usuarioAbierto = () => (usuarios || []).find(x => x.id === fichaId);
+const hayCambios = k => (borradores[k] ?? '') !== (originales[k] ?? '');
+const modulosConCambios = () => (catalogo || []).filter(m => hayCambios(m.clave));
+// Los roles, del que menos puede al que más (como en el Portal de Don Aseo)
+const rolesDe = m => [...(m.roles || [])].sort((a, b) => (a.acciones || []).length - (b.acciones || []).length);
 
 function abrirFicha(id) {
-  fichaId = id; fichaPanel = '';
-  fichaAntesDelFoco = document.activeElement;
+  const u = (usuarios || []).find(x => x.id === id);
+  if (!u) return;
+  if (fichaId !== id) { fichaPanel = ''; fichaAntesDelFoco = document.activeElement; }
+  fichaId = id;
+  borradores = {}; originales = {};
+  for (const m of catalogo || []) borradores[m.clave] = originales[m.clave] = u.accesos?.[m.clave] || '';
+  if (moduloElegido !== 'historial' && !(catalogo || []).some(m => m.clave === moduloElegido)) moduloElegido = catalogo?.[0]?.clave || 'historial';
   pintarFicha();
-  $('ficha-fondo').hidden = false; $('ficha').hidden = false;
-  $('ficha').querySelector('[data-ficha="cerrar"]')?.focus();
-  cargarHistorial(id);
+  $('ficha-fondo').hidden = false;
+  $('ficha-fondo').scrollTop = 0;
+  document.body.style.overflow = 'hidden';
+  $('ficha').querySelector('.f-volver')?.focus({ preventScroll: true });
 }
-function cerrarFicha() {
-  if (!fichaId && $('ficha').hidden) return;
-  fichaId = null; fichaPanel = '';
-  $('ficha').hidden = true; $('ficha-fondo').hidden = true; $('ficha').innerHTML = '';
+// Después de un cambio de cuenta: lo guardado se actualiza y lo que estaba sin guardar se respeta
+function refrescarFicha() {
+  const u = usuarioAbierto();
+  if (!u) return cerrarFicha(true);
+  for (const m of catalogo || []) {
+    const ahora = u.accesos?.[m.clave] || '';
+    if (!hayCambios(m.clave)) borradores[m.clave] = ahora;
+    originales[m.clave] = ahora;
+  }
+  pintarFicha();
+}
+async function cerrarFicha(forzar) {
+  if (!fichaId) return;
+  const pendientes = modulosConCambios();
+  if (!forzar && pendientes.length) {
+    if (!await preguntar({ icono: 'alerta', tono: 'aviso', titulo: 'Tiene cambios sin guardar',
+      texto: `Hay cambios sin guardar en ${unirY(pendientes.map(m => m.nombre))}. Si cierra la ficha, se pierden.`,
+      si: 'Cerrar sin guardar', no: 'Seguir editando' })) return;
+  }
+  fichaId = null; fichaPanel = ''; borradores = {}; originales = {};
+  $('ficha-fondo').hidden = true; $('ficha').innerHTML = '';
+  document.body.style.overflow = '';
   if (fichaAntesDelFoco && document.body.contains(fichaAntesDelFoco)) fichaAntesDelFoco.focus({ preventScroll: true });
   fichaAntesDelFoco = null;
 }
-$('ficha-fondo').addEventListener('click', cerrarFicha);
 
-function filaAcceso(u, m) {
-  const actual = u.accesos?.[m.clave] || '';
-  const r = rolDe(m, actual);
-  return `<div class="acceso" style="--mc:${esc(m.color || '#2a52ad')}">
-      <span class="acceso-icono">${ico(m.icono, 21)}</span>
-      <div class="acceso-txt"><b>${esc(m.nombre)}</b><small>${esc(actual ? queHace(r?.acciones) : 'No entra a este módulo.')}</small></div>
-      <select class="campo" data-modulo="${esc(m.clave)}" aria-label="Acceso a ${esc(m.nombre)}">
-        <option value="">Sin acceso</option>
-        ${(m.roles || []).map(x => `<option value="${esc(x.clave)}"${x.clave === actual ? ' selected' : ''}>${esc(x.nombre)}</option>`).join('')}
-      </select>
-    </div>`;
-}
 function accionesCuenta(u) {
   const propio = u.id === yo.id;
   const boton = (accion, icono, texto, extra = '') =>
-    `<button type="button" class="btn btn-sec btn-chico${fichaPanel === accion ? ' activa' : ''} ${extra}" data-cuenta="${accion}">${ico(icono, 15)}${texto}</button>`;
+    `<button type="button" class="f-acc${fichaPanel === accion ? ' activa' : ''}${extra}" data-cuenta="${accion}">${ico(icono, 16)}${texto}</button>`;
   let h = boton('datos', 'lapiz', 'Nombre y cargo') + boton('clave', 'llave', 'Contraseña');
+  if (!propio && !u.es_admin) h += u.activo ? boton('suspender', 'pausa', 'Suspender') : boton('reactivar', 'play', 'Reactivar');
   if (u.es_admin) { if (!propio) h += boton('quitar-admin', 'admin', 'Quitar administrador general'); }
   else if (u.activo) h += boton('hacer-admin', 'admin', 'Hacer administrador general');
-  if (!propio && !u.es_admin) h += u.activo ? boton('suspender', 'pausa', 'Suspender') : boton('reactivar', 'play', 'Reactivar');
-  if (!propio && !u.es_admin) h += boton('eliminar', 'papelera', 'Eliminar cuenta', 'btn-borde-peligro');
+  if (!propio && !u.es_admin) h += boton('eliminar', 'papelera', 'Eliminar cuenta', ' peligro');
   return h;
 }
 function panelCuenta(u) {
@@ -1813,80 +1881,163 @@ document.addEventListener('click', ev => {
   if (v) pintarVerClave(v);
 });
 
-function pintarFicha(mantenerHistorial) {
+function pintarFicha() {
   const u = usuarioAbierto();
-  if (!u) return cerrarFicha();
-  const historial = mantenerHistorial ? $('ficha-historial')?.innerHTML : null;
-  $('ficha').innerHTML = `
-    <div class="ficha-cabeza">
-      ${avatar(u, 'avatar-grande')}
-      <div class="ficha-quien">
-        <h2 id="ficha-nombre">${esc(u.nombre)}</h2>
-        <div class="ficha-correo">${esc(u.correo)}</div>
-        ${u.cargo ? `<div class="ficha-cargo">${esc(u.cargo)}</div>` : ''}
-        <div class="insignias">${insignias(u)}</div>
+  if (!u) return;
+  $('ficha').innerHTML = `<div class="f-pagina">
+    <button type="button" class="f-volver" data-ficha="cerrar">${ico('flechaIzq', 16)}Usuarios y accesos</button>
+    <div class="f-tarjeta">
+      <div class="f-cab">
+        ${avatar(u)}
+        <div style="min-width:0">
+          <h2 class="f-nombre" id="ficha-nombre">${esc(u.nombre)} ${insignias(u)}</h2>
+          <div class="f-meta">${esc(u.correo)}${u.cargo ? ' · ' + esc(u.cargo) : ''}<br>
+            Último ingreso: ${esc(hace(u.ultimo_ingreso))} · Cuenta creada el ${esc(fechaCorta(u.creado))}</div>
+        </div>
+        <button type="button" class="f-cerrar" data-ficha="cerrar" aria-label="Cerrar la ficha">${ico('cerrar', 20)}</button>
       </div>
-      <button type="button" class="btn-icono" data-ficha="cerrar" aria-label="Cerrar">${ico('cerrar', 20)}</button>
+      <div class="f-acciones-cuenta">${accionesCuenta(u)}</div>
+      <div class="f-panel" id="f-panel"${fichaPanel ? '' : ' hidden'}>${panelCuenta(u)}</div>
     </div>
-    <div class="ficha-cuerpo">
-      <section class="ficha-seccion">
-        <h3>Accesos a los módulos</h3>
-        ${u.es_admin ? `<div class="nota nota-admin">Es administrador general: entra a todos los módulos con todos los permisos y maneja los usuarios. Los roles de abajo cuentan solo si deja de serlo.</div>` : ''}
-        ${!u.activo ? `<div class="nota nota-peligro">La cuenta está suspendida: no entra a ningún módulo. Al reactivarla recupera estos mismos accesos.</div>` : ''}
-        ${(catalogo || []).map(m => filaAcceso(u, m)).join('') || '<div class="vacio">No hay módulos.</div>'}
-      </section>
-      <section class="ficha-seccion">
-        <h3>Cuenta</h3>
-        <div class="acciones-cuenta">${accionesCuenta(u)}</div>
-        <div class="ficha-panel" id="ficha-panel"${fichaPanel ? '' : ' hidden'}>${panelCuenta(u)}</div>
-        ${u.id === yo.id ? '<p class="ficha-dato">Es su propia cuenta: no se puede suspender, eliminar ni quitarse el rol de administrador general (lo hace otro administrador).</p>' : ''}
-        <p class="ficha-dato">Cuenta creada ${esc(fecha(u.creado))} · Último ingreso: ${esc(hace(u.ultimo_ingreso))}</p>
-      </section>
-      <section class="ficha-seccion">
-        <h3>Historial</h3>
-        <div id="ficha-historial" class="historial">${historial ?? '<div class="vacio">Cargando…</div>'}</div>
-      </section>
-    </div>`;
+    ${u.activo ? '' : `<div class="f-suspendida">${ico('pausa', 18)}Cuenta suspendida: no entra a ningún módulo. Para cambiar sus accesos, primero reactívela.</div>`}
+    <div class="f-zona">
+      <nav class="f-tarjeta f-nav" id="f-nav" aria-label="Módulos"></nav>
+      <div class="f-main${u.activo ? '' : ' bloqueado'}" id="f-main"></div>
+    </div></div>`;
   $('ficha').querySelectorAll('[data-ver]').forEach(pintarVerClave);
+  pintarZonaFicha();
+}
+
+// Lo que tiene guardado en un módulo, para la lista de la izquierda
+function estadoModulo(u, m) {
+  if (u.es_admin) return { texto: 'Administrador general', clase: 'n-admin' };
+  const clave = u.accesos?.[m.clave];
+  return clave ? { texto: rolDe(m, clave)?.nombre || clave, clase: 'n-si' } : { texto: 'Sin acceso', clase: '' };
+}
+function pintarNavFicha() {
+  const nav = $('f-nav'), u = usuarioAbierto();
+  if (!nav || !u) return;
+  nav.innerHTML = (catalogo || []).map(m => {
+    const e = estadoModulo(u, m);
+    return `<button type="button" class="n-item${moduloElegido === m.clave ? ' activo' : ''}" data-elegir="${esc(m.clave)}" style="--pc:${esc(m.color || '#2a52ad')}">
+      <span class="n-ico">${ico(m.icono, 18)}</span>
+      <span class="n-txt"><span class="n-nom">${esc(m.nombre)}${hayCambios(m.clave) ? '<span class="n-pend">● sin guardar</span>' : ''}</span>
+        <span class="n-est ${e.clase}">${esc(e.texto)}</span></span></button>`;
+  }).join('') + `<button type="button" class="n-item n-hist${moduloElegido === 'historial' ? ' activo' : ''}" data-elegir="historial">
+      <span class="n-ico">${ico('reloj', 18)}</span>
+      <span class="n-txt"><span class="n-nom">Historial</span><span class="n-est">Cambios hechos desde el panel</span></span></button>`;
+}
+function pintarZonaFicha() {
+  const main = $('f-main'), u = usuarioAbierto();
+  if (!main || !u) return;
+  const m = (catalogo || []).find(x => x.clave === moduloElegido);
+  if (moduloElegido === 'historial' || !m) {
+    main.innerHTML = `<div class="f-tarjeta f-hist"><div class="f-hist-titulo">Historial de cambios</div>
+      <div id="f-historial" class="historial"><div class="vacio">Cargando…</div></div></div>`;
+    cargarHistorial(u.id);
+  } else {
+    main.innerHTML = `<div class="f-prog" data-prog="${esc(m.clave)}" style="--pc:${esc(m.color || '#2a52ad')}">${htmlModulo(u, m)}</div>`;
+  }
+  pintarNavFicha();
+}
+
+// Lo que hace un rol: sus líneas de descripción (panel.roles.descripcion) o, si no tiene, sus acciones
+function textosRol(r) {
+  const lineas = String(r?.descripcion || '').split('\n').map(t => t.trim()).filter(Boolean);
+  return lineas.length ? lineas : [queHace(r?.acciones)];
+}
+function panelRoles(m, actual) {
+  return `<div class="r-panel">${rolesDe(m).map(r => `<div class="r-rol${r.clave === actual ? ' actual' : ''}">
+      <div class="r-nom">${esc(r.nombre)}${r.clave === actual ? '<span class="r-tag">elegido</span>' : ''}</div>
+      ${textosRol(r).map(t => `<div class="r-txt">${esc(t)}</div>`).join('')}</div>`).join('')}</div>`;
+}
+function htmlModulo(u, m) {
+  const k = m.clave, b = borradores[k] || '', guardado = u.accesos?.[k] || '', cambios = hayCambios(k);
+  const verRoles = !rolesOcultos.has(k);
+  const rg = rolDe(m, guardado);
+  const chipEstado = u.es_admin ? '<span class="chip chip-admin">Admin. general</span>'
+    : guardado ? `<span class="chip ${claseRol(rg?.acciones)}">${esc(rg?.nombre || guardado)}</span>` : '<span class="chip">Sin acceso</span>';
+  const ayuda = b ? textosRol(rolDe(m, b))[0] : `No entra a ${m.nombre}.`;
+  return `<div class="f-prog-cab"><div class="f-prog-nombre">${ico(m.icono, 24)}${esc(m.nombre)}</div>${chipEstado}</div>
+    ${u.es_admin ? '<div class="nota nota-admin">Es administrador general: entra a este módulo con todos los permisos. El rol de aquí cuenta solo si deja de serlo.</div>' : ''}
+    <div class="f-rol">
+      <div class="f-fila-rol"><label class="f-fila" for="f-sel-rol">Rol</label>
+        <button type="button" class="f-info" data-accion="info-roles" aria-expanded="${verRoles}">${ico('info', 15)}${verRoles ? 'Ocultar los roles' : '¿Qué hace cada rol?'}</button></div>
+      <select class="campo f-sel" id="f-sel-rol" data-campo="rol">
+        <option value="">Sin acceso</option>
+        ${rolesDe(m).map(x => `<option value="${esc(x.clave)}"${x.clave === b ? ' selected' : ''}>${esc(x.nombre)}</option>`).join('')}
+      </select>
+      <div class="f-ayuda">${esc(ayuda)}</div>
+      ${verRoles ? panelRoles(m, b) : ''}
+    </div>
+    <div class="f-acciones">
+      <span class="f-sin-guardar"${cambios ? '' : ' hidden'}>● Cambios sin guardar</span>
+      <button type="button" class="btn btn-sec" data-accion="deshacer"${cambios ? '' : ' hidden'}>Deshacer</button>
+      <button type="button" class="btn btn-primario" data-accion="guardar"${cambios ? '' : ' disabled'}>Guardar</button>
+    </div>`;
 }
 
 async function cargarHistorial(id) {
-  const { data, error } = await sb.rpc('panel_bitacora', { p_persona: id, p_limite: 60 });
-  if (fichaId !== id || !$('ficha-historial')) return;
-  if (error) { $('ficha-historial').innerHTML = `<div class="vacio">No se pudo cargar el historial.</div>`; return; }
-  $('ficha-historial').innerHTML = (data || []).length
+  const { data, error } = await sb.rpc('panel_bitacora', { p_persona: id, p_limite: 100 });
+  if (fichaId !== id || !$('f-historial')) return;
+  if (error) { $('f-historial').innerHTML = `<div class="vacio">No se pudo cargar el historial.</div>`; return; }
+  $('f-historial').innerHTML = (data || []).length
     ? data.map(e => `<div class="evento"><div class="evento-hora">${esc(fecha(e.cuando))}</div>
-        <div class="evento-txt">${esc(e.texto)}<div class="evento-quien">${e.quien ? 'Por ' + esc(e.quien_nombre) : 'Desde Supabase'}</div></div></div>`).join('')
+        <div class="evento-txt">${esc(e.texto)}<div class="evento-quien">${e.quien ? 'Por ' + esc(e.quien_nombre) : 'Desde Supabase (fuera del panel)'}</div></div></div>`).join('')
     : '<div class="vacio">Sin cambios todavía.</div>';
 }
 
-// Cambiar el acceso a un módulo: se guarda al elegir
-$('ficha').addEventListener('change', async ev => {
-  const s = ev.target.closest('select[data-modulo]');
-  if (!s) return;
-  const u = usuarioAbierto(), m = (catalogo || []).find(x => x.clave === s.dataset.modulo);
-  if (!u || !m) return;
-  const antes = u.accesos?.[m.clave] || '', rol = s.value;
-  s.disabled = true;
-  const { data, error } = await sb.rpc('panel_guardar_acceso', { p_usuario: u.id, p_modulo: m.clave, p_rol: rol || null });
-  s.disabled = false;
+// Guardar el rol de un módulo (lo que esté en el borrador)
+async function guardarModulo(k, boton) {
+  const u = usuarioAbierto(), m = (catalogo || []).find(x => x.clave === k);
+  if (!u || !m || !hayCambios(k)) return;
+  const rol = borradores[k] || '';
+  boton.disabled = true;
+  const { data, error } = await conCarga(() => sb.rpc('panel_guardar_acceso', { p_usuario: u.id, p_modulo: k, p_rol: rol || null }), 'Guardando…');
   if (error) {
-    s.value = antes;
+    boton.disabled = false;
     if (esErrorDeSesion(error)) return sesionTerminada();
     return aviso(textoError(error), 'error');
   }
   u.accesos = data?.accesos || {};
-  pintarFicha(); pintarUsuarios(); cargarHistorial(u.id);
+  borradores[k] = originales[k] = u.accesos[k] || '';
+  pintarZonaFicha(); pintarUsuarios();
   aviso(rol ? `${primerNombre(u.nombre)} entra a ${m.nombre} como ${rolDe(m, rol)?.nombre || rol}.` : `${primerNombre(u.nombre)} ya no entra a ${m.nombre}.`, 'ok');
   if (u.id === yo.id) refrescarInicio();
+}
+
+// El rol elegido en el desplegable queda en el borrador hasta «Guardar»
+$('ficha').addEventListener('change', ev => {
+  const el = ev.target;
+  if (el.dataset.campo !== 'rol') return;
+  const k = el.closest('[data-prog]')?.dataset.prog;
+  if (!k) return;
+  borradores[k] = el.value;
+  pintarZonaFicha();
+  $('f-sel-rol')?.focus();
 });
 
 $('ficha').addEventListener('click', async ev => {
   if (ev.target.closest('[data-ficha="cerrar"]')) return cerrarFicha();
+  const n = ev.target.closest('[data-elegir]');
+  if (n) {
+    moduloElegido = n.dataset.elegir;
+    try { localStorage.setItem('sinugravas.panel.ficha.modulo', moduloElegido); } catch (e) { /* sin almacenamiento */ }
+    pintarZonaFicha();
+    const zona = document.querySelector('#ficha .f-zona');
+    if (zona && zona.getBoundingClientRect().top < 0) zona.scrollIntoView({ block: 'start' });
+    return;
+  }
   const c = ev.target.closest('button[data-cuenta]');
   if (c) return accionCuenta(c.dataset.cuenta);
   const p = ev.target.closest('button[data-panel]');
   if (p) return accionPanel(p.dataset.panel, p);
+  const a = ev.target.closest('button[data-accion]');
+  const k = a?.closest('[data-prog]')?.dataset.prog;
+  if (!a || !k) return;
+  if (a.dataset.accion === 'info-roles') { if (!rolesOcultos.delete(k)) rolesOcultos.add(k); return pintarZonaFicha(); }
+  if (a.dataset.accion === 'deshacer') { borradores[k] = originales[k]; return pintarZonaFicha(); }
+  if (a.dataset.accion === 'guardar') return guardarModulo(k, a);
 });
 
 async function accionCuenta(accion) {
@@ -1894,8 +2045,8 @@ async function accionCuenta(accion) {
   if (!u) return;
   if (['datos', 'clave', 'eliminar'].includes(accion)) {
     fichaPanel = fichaPanel === accion ? '' : accion;
-    pintarFicha(true);
-    const primero = $('ficha-panel')?.querySelector('input');
+    pintarFicha();
+    const primero = $('f-panel')?.querySelector('input');
     if (primero) primero.focus();
     return;
   }
@@ -1948,8 +2099,7 @@ async function accionPanel(accion, boton) {
     if (mal) return aviso(mal, 'error');
     const r = await conCarga(() => llamarFuncion({ accion: 'contrasena', usuario: u.id, contrasena: clave }), 'Guardando…');
     if (!r.ok) return aviso(textoError(r), 'error');
-    $('p-clave').value = '';
-    fichaPanel = ''; pintarFicha(true); cargarHistorial(u.id);
+    fichaPanel = ''; pintarFicha();
     return aviso(`Contraseña guardada. Dígasela a ${primerNombre(u.nombre)}.`, 'ok');
   }
   if (accion === 'enviar-correo') {
@@ -1957,7 +2107,7 @@ async function accionPanel(accion, boton) {
       texto: `Le llega a ${u.correo} un enlace para que escriba una contraseña nueva.` })) return;
     const r = await conCarga(() => llamarFuncion({ accion: 'recuperacion', usuario: u.id }), 'Enviando…');
     if (!r.ok) return aviso(textoError(r), 'error');
-    cargarHistorial(u.id);
+    if (moduloElegido === 'historial') cargarHistorial(u.id);
     return aviso('Correo enviado.', 'ok');
   }
   if (accion === 'eliminar') {
@@ -1968,7 +2118,7 @@ async function accionPanel(accion, boton) {
     boton.disabled = false;
     if (!r.ok) return aviso(textoError(r), 'error');
     aviso(`La cuenta de ${u.nombre} fue eliminada.`, 'ok');
-    cerrarFicha();
+    await cerrarFicha(true);
     return recargarUsuarios();
   }
 }
@@ -2107,7 +2257,7 @@ document.addEventListener('keydown', ev => {
   if (ev.key !== 'Escape') return;
   if (preguntaAbierta) return responderPregunta(false);
   if (!$('dialogo-fondo').hidden) return cerrarDialogo();
-  if (!$('ficha').hidden) return cerrarFicha();
+  if (!$('ficha-fondo').hidden) return cerrarFicha();
 });
 
 arrancar();
