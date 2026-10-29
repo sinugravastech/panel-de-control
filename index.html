@@ -125,26 +125,36 @@ select.campo{padding-right:8px;cursor:pointer}
 #enlace-estado .btn-bloque{margin-top:18px}
 #enlace-estado .enlace{display:block;margin:12px auto 0}
 
-/* ── Barra de arriba ────────────────────────────────────────────────── */
-.barra{position:sticky;top:0;z-index:20;display:flex;align-items:center;gap:18px;min-height:60px;padding:0 20px;
-  background:var(--surface);border-bottom:1px solid var(--border);box-shadow:var(--sh-1)}
-.marca{display:flex;align-items:center;gap:10px;color:var(--text);text-decoration:none;flex:none}
-.emblema-caja{display:grid;place-items:center;width:38px;height:38px;border-radius:9px;background:#fff;border:1px solid var(--border);overflow:hidden}
-.emblema-caja img{width:30px;height:30px;object-fit:contain}
-.marca-txt{display:flex;flex-direction:column;line-height:1.2}
-.marca-txt b{font-size:15px}
-.marca-txt small{font-size:11.5px;color:var(--text-3);letter-spacing:.2px}
-.pestanas{display:flex;gap:4px;height:60px;align-items:stretch}
-.pestana{display:flex;align-items:center;gap:7px;padding:0 12px;color:var(--text-2);text-decoration:none;font-weight:600;
-  border-bottom:2px solid transparent;margin-bottom:-1px;white-space:nowrap}
-.pestana:hover{color:var(--text)}
-.pestana.activa{color:var(--accent);border-bottom-color:var(--accent)}
-.barra-derecha{margin-left:auto;display:flex;align-items:center;gap:8px}
-.yo{display:flex;align-items:center;gap:9px;padding:4px 10px 4px 4px;border-radius:999px;border:1px solid var(--border);background:var(--surface);cursor:pointer;max-width:260px}
-.yo:hover{background:var(--surface-3)}
-.yo-txt{display:flex;flex-direction:column;line-height:1.2;text-align:left;min-width:0}
-.yo-txt b{font-size:13px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.yo-txt small{font-size:11.5px;color:var(--text-3);white-space:nowrap}
+/* ── Barra de arriba: la del Portal de Don Aseo, con los colores de SINUGRAVAS
+   (el azul de la «S» y una raya del naranja de la palabra) ───────────────── */
+.barra{position:sticky;top:0;z-index:20;display:flex;align-items:center;justify-content:space-between;gap:14px;height:72px;padding:0 28px;
+  background:linear-gradient(100deg,var(--brand-800) 0%,var(--brand-600) 48%,var(--brand-500) 100%);
+  border-bottom:3px solid var(--sun-500);box-shadow:0 6px 24px rgba(12,27,71,.22)}
+html[data-theme="dark"] .barra{background:linear-gradient(100deg,#08122f 0%,var(--brand-800) 50%,var(--brand-700) 100%)}
+.marca{display:flex;align-items:center;gap:13px;min-width:0;color:#fff;text-decoration:none}
+.logo-caja{display:grid;place-items:center;height:46px;padding:4px 10px;border-radius:11px;background:#fff;box-shadow:0 2px 10px rgba(0,0,0,.14);flex:none}
+.logo-caja img{display:block;height:36px;width:auto}
+.logo-caja .emblema{display:none}
+.marca-txt{display:flex;flex-direction:column;line-height:1.15;white-space:nowrap}
+.marca-txt b{font-size:17px;font-weight:800;letter-spacing:-.01em}
+.marca-txt small{font-size:11px;font-weight:600;color:rgba(255,255,255,.75);letter-spacing:.03em}
+.barra-derecha{display:flex;align-items:center;gap:10px}
+.pestanas{display:flex;gap:8px}
+.pestana{display:inline-flex;align-items:center;gap:8px;height:42px;padding:0 16px;border-radius:12px;background:rgba(255,255,255,.14);
+  color:#fff;text-decoration:none;font-size:13.5px;font-weight:700;white-space:nowrap;transition:background var(--t-fast)}
+.pestana:hover,.pestana.activa{background:rgba(255,255,255,.28)}
+.barra .btn-icono{color:#fff}
+.barra .btn-icono:hover{background:rgba(255,255,255,.16);color:#fff}
+.yo{display:flex;align-items:center;gap:10px;padding:5px 6px 5px 10px;border:0;border-radius:12px;background:none;color:#fff;cursor:pointer;max-width:300px}
+.yo:hover{background:rgba(255,255,255,.12)}
+.yo-txt{display:flex;flex-direction:column;line-height:1.2;text-align:right;min-width:0}
+.yo-txt b{font-size:14px;font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.yo-txt small{font-size:11px;color:rgba(255,255,255,.75);white-space:nowrap}
+.yo .avatar{width:40px;height:40px;font-size:15px;background:#fff;color:var(--brand-600);border:2px solid rgba(255,255,255,.55)}
+.btn-salir{display:inline-flex;align-items:center;gap:7px;height:42px;padding:0 18px;border:0;border-radius:11px;background:#fff;color:var(--brand-600);
+  font-size:13.5px;font-weight:800;cursor:pointer;box-shadow:0 4px 12px rgba(0,0,40,.15);transition:transform var(--t-fast),box-shadow var(--t-fast)}
+.btn-salir:hover{transform:translateY(-1px);box-shadow:0 7px 18px rgba(0,0,40,.22)}
+html[data-theme="dark"] .btn-salir{background:#e6edf3;color:var(--brand-800)}
 
 /* ── Avatares, chips e insignias ────────────────────────────────────── */
 .avatar{display:inline-grid;place-items:center;flex:none;width:32px;height:32px;border-radius:50%;font-size:12.5px;font-weight:700;
@@ -162,39 +172,74 @@ html[data-theme="dark"] .chip-alto{background:var(--accent-soft);color:#b9cbf3;b
 .insignias{display:flex;flex-wrap:wrap;gap:6px}
 
 /* ── Contenido ──────────────────────────────────────────────────────── */
-.contenido{max-width:1180px;margin:0 auto;padding:28px 20px 40px}
-.cabeza{display:flex;align-items:flex-end;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-bottom:20px}
-.cabeza h1{font-size:24px;font-weight:700}
+.contenido{max-width:1200px;margin:0 auto;padding:40px 28px 34px}
+.cabeza{display:flex;align-items:flex-end;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-bottom:22px}
+.cabeza h1{font-size:28px;font-weight:800;letter-spacing:-.02em}
 .cabeza p{margin:6px 0 0;color:var(--text-2);max-width:680px}
 .pie{text-align:center;font-size:12px;color:var(--text-3);padding:0 16px 28px}
 .vacio{padding:28px 16px;text-align:center;color:var(--text-3)}
 
-/* Resumen del administrador */
-.resumen{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;margin-bottom:26px}
-.dato{display:flex;align-items:center;gap:12px;padding:14px 16px;border-radius:var(--radius-lg);background:var(--surface);border:1px solid var(--border);
-  text-align:left;cursor:pointer;box-shadow:var(--sh-1);transition:box-shadow var(--t),transform var(--t)}
-.dato:hover{box-shadow:var(--sh-2);transform:translateY(-1px)}
-.dato-ico{display:grid;place-items:center;width:40px;height:40px;border-radius:10px;background:color-mix(in srgb,var(--dc) 13%,transparent);color:var(--dc)}
-.dato-valor{font-size:22px;font-weight:700;line-height:1.1}
-.dato-txt{font-size:12.5px;color:var(--text-2)}
-.subtitulo{font-size:13px;font-weight:700;color:var(--text-3);text-transform:uppercase;letter-spacing:.6px;margin:0 0 12px}
-
-/* Tarjetas de los módulos */
-.modulos{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:18px}
-.modulo{position:relative;display:flex;flex-direction:column;gap:12px;padding:22px 20px 18px;border-radius:14px;background:var(--surface);
-  border:1px solid var(--border);box-shadow:var(--sh-1);overflow:hidden;transition:box-shadow var(--t),transform var(--t)}
-.modulo::before{content:"";position:absolute;inset:0 0 auto;height:4px;background:var(--mc)}
-.modulo:not(.modulo-cerrado):hover{box-shadow:var(--sh-3);transform:translateY(-2px)}
-.modulo-cabeza{display:flex;align-items:center;gap:12px}
-.modulo-icono{display:grid;place-items:center;width:48px;height:48px;border-radius:12px;flex:none;
-  background:color-mix(in srgb,var(--mc) 13%,transparent);color:var(--mc)}
-.modulo-nombre{font-size:17px;font-weight:700}
-.modulo-desc{color:var(--text-2);margin:0;flex:1}
-.modulo-rol{display:flex;flex-wrap:wrap;align-items:center;gap:6px;font-size:12.5px;color:var(--text-3)}
-.modulo-pie{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;padding-top:12px;border-top:1px solid var(--border)}
-.modulo-nota{font-size:12px;color:var(--text-3)}
-.modulo-cerrado{opacity:.75}
-.modulo-cerrado .modulo-icono{filter:grayscale(1)}
+/* ── Inicio: como el del Portal de Don Aseo, con los colores de SINUGRAVAS ── */
+.bienvenida-titulo{font-size:34px;font-weight:800;letter-spacing:-.025em;line-height:1.15}
+.bienvenida-sub{font-size:15.5px;color:var(--text-2);margin:8px 0 0}
+.bienvenida-pista{font-size:14px;color:var(--text-3);margin:3px 0 0}
+.pedir-nombre{display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin-top:20px;padding:14px 18px;border-radius:16px;max-width:780px;
+  background:var(--surface);border:1px solid color-mix(in srgb,var(--sun-500) 40%,transparent);box-shadow:var(--sh-1)}
+.pn-ico{display:grid;place-items:center;width:44px;height:44px;border-radius:12px;flex:none;background:var(--sun-50);color:var(--sun-500)}
+.pn-txt{flex:1;min-width:220px;color:var(--text-2)}
+.pn-txt b{color:var(--text)}
+.buscador-inicio{position:relative;margin:26px 0 32px;max-width:540px}
+.buscador-inicio .ico{position:absolute;left:18px;top:50%;transform:translateY(-50%);color:var(--text-3)}
+.buscador-inicio input{width:100%;height:54px;padding:0 18px 0 50px;border:1px solid var(--border);border-radius:16px;background:var(--surface);font-size:15px;
+  outline:none;box-shadow:0 8px 26px rgba(20,40,90,.07);transition:box-shadow var(--t),border-color var(--t)}
+.buscador-inicio input:focus{border-color:var(--brand-300);box-shadow:0 8px 30px color-mix(in srgb,var(--brand-500) 22%,transparent)}
+.cifras{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:18px;margin-bottom:38px}
+.cifra{display:flex;align-items:center;gap:15px;padding:20px 22px;border:0;border-radius:18px;background:var(--surface);color:inherit;text-align:left;
+  box-shadow:0 8px 26px rgba(20,40,90,.06);transition:transform var(--t),box-shadow var(--t)}
+button.cifra{cursor:pointer}
+button.cifra:hover{transform:translateY(-3px);box-shadow:0 14px 34px rgba(20,40,90,.11)}
+.cifra-ico{display:grid;place-items:center;width:50px;height:50px;border-radius:14px;flex:none;background:color-mix(in srgb,var(--cc) 14%,transparent);color:var(--cc)}
+.cifra-valor{display:block;font-size:26px;font-weight:800;line-height:1.05;color:var(--cc)}
+.cifra-titulo{display:block;font-size:13px;font-weight:700;margin-top:3px}
+.cifra-sub{display:flex;align-items:center;gap:5px;font-size:11.5px;color:var(--text-3);margin-top:1px}
+.punto{width:8px;height:8px;border-radius:50%;background:var(--ok-500);flex:none}
+.titulo-seccion{font-size:16px;font-weight:800;margin:0 0 16px}
+.tarjetas{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:22px}
+.tarjeta-modulo{position:relative;display:flex;flex-direction:column;align-items:flex-start;gap:12px;min-height:272px;padding:26px;border-radius:22px;overflow:hidden;
+  background:linear-gradient(145deg,color-mix(in srgb,var(--mc) 15%,var(--surface)) 0%,var(--surface) 62%);
+  border:1px solid color-mix(in srgb,var(--mc) 14%,var(--border));box-shadow:0 10px 30px rgba(20,40,90,.07);cursor:pointer;
+  transition:transform .2s ease,box-shadow .2s ease}
+.tarjeta-modulo:hover{transform:translateY(-8px);box-shadow:0 24px 50px rgba(20,40,90,.16)}
+.tarjeta-modulo:focus-visible{outline:3px solid color-mix(in srgb,var(--mc) 55%,transparent);outline-offset:3px}
+.tm-ilu{position:absolute;right:-4px;bottom:-4px;width:200px;height:150px;pointer-events:none;opacity:.95}
+.tm-ilu svg{display:block;width:100%;height:100%}
+.tm-icono{position:relative;z-index:1;display:grid;place-items:center;width:62px;height:62px;border-radius:16px;background:#fff;color:var(--mc);
+  box-shadow:0 6px 16px color-mix(in srgb,var(--mc) 30%,transparent)}
+html[data-theme="dark"] .tm-icono{background:var(--surface-3)}
+.tm-nombre{position:relative;z-index:1;font-size:18px;font-weight:800;line-height:1.25;max-width:88%}
+.tm-desc{position:relative;z-index:1;flex:1;font-size:13.5px;line-height:1.55;color:var(--text-2);max-width:66%}
+.tm-acceso{position:relative;z-index:1;font-size:12px;font-weight:800;color:var(--mc);background:var(--surface);border-radius:8px;padding:4px 10px;
+  box-shadow:0 2px 8px rgba(20,40,90,.08)}
+.tm-entrar{position:relative;z-index:1;display:inline-flex;align-items:center;gap:8px;margin-top:4px;padding:11px 22px;border-radius:12px;background:var(--mc);
+  color:#fff;font-size:14px;font-weight:800;box-shadow:0 6px 16px color-mix(in srgb,var(--mc) 40%,transparent);transition:filter var(--t-fast)}
+.tarjeta-modulo:hover .tm-entrar{filter:brightness(1.08)}
+.tarjeta-modulo.cerrada{cursor:default;opacity:.7;filter:grayscale(.4)}
+.tarjeta-modulo.cerrada:hover{transform:none;box-shadow:0 10px 30px rgba(20,40,90,.07)}
+.tm-cerrada{position:relative;z-index:1;display:inline-flex;align-items:center;gap:6px;font-size:12.5px;font-weight:700;color:var(--dang-500)}
+/* Las ilustraciones de las tarjetas: dibujos propios, con el color de cada módulo y el naranja de SINUGRAVAS */
+.tm-ilu .c1{fill:var(--mc)}
+.tm-ilu .c2{fill:color-mix(in srgb,var(--mc) 16%,#fff)}
+.tm-ilu .c3{fill:color-mix(in srgb,var(--mc) 42%,#fff)}
+.tm-ilu .c4{fill:#2b3640}
+.tm-ilu .c5{fill:var(--ac,var(--sun-500))}
+.tm-ilu .c5c{fill:color-mix(in srgb,var(--ac,var(--sun-500)) 55%,#fff)}
+.tm-ilu .c6{fill:#fff}
+.tm-ilu .c6b{fill:#fff;stroke:color-mix(in srgb,var(--mc) 35%,#fff);stroke-width:2}
+.tm-ilu .c7{fill:#c3ced8}
+.tm-ilu .l3{fill:none;stroke:color-mix(in srgb,var(--mc) 42%,#fff);stroke-width:3;stroke-linecap:round}
+.tm-ilu .l6{fill:none;stroke:#fff;stroke-width:3;stroke-linecap:round;stroke-linejoin:round}
+html[data-theme="dark"] .tm-ilu{opacity:.85}
+html[data-theme="dark"] .tm-ilu .c2{fill:color-mix(in srgb,var(--mc) 26%,var(--surface))}
 .aviso-suspendida{display:flex;gap:12px;align-items:flex-start;padding:16px 18px;border-radius:var(--radius-lg);background:var(--dang-50);color:var(--dang-700);
   border:1px solid color-mix(in srgb,var(--dang-500) 25%,transparent)}
 
@@ -333,14 +378,35 @@ html[data-theme="dark"] #aviso{background:#e6edf3;color:#0d1319}
 @keyframes girar{to{transform:rotate(360deg)}}
 
 /* ── Pantallas chicas ───────────────────────────────────────────────── */
-@media (max-width:860px){
-  .barra{flex-wrap:wrap;gap:10px;padding:8px 16px 0}
-  .pestanas{order:3;width:100%;height:44px;overflow-x:auto;scrollbar-width:none}
-  .pestanas::-webkit-scrollbar{display:none}
+@media (max-width:900px){
+  .barra{height:auto;min-height:64px;padding:8px 14px;gap:8px}
+  .marca-txt small{display:none}
+  .pestana{padding:0 12px}
+  .pestana span{display:none}
   .yo-txt{display:none}
   .yo{padding:3px}
+  .btn-salir{padding:0 12px}
   .btn-salir span{display:none}
-  .btn-salir{width:38px;padding:0}
+  .contenido{padding:26px 16px 28px}
+  .bienvenida-titulo{font-size:27px}
+  .tm-desc{max-width:100%}
+  .tm-ilu{width:150px;height:112px;opacity:.55}
+}
+@media (max-width:560px){
+  .barra{padding:8px 10px}
+  .marca-txt{display:none}
+  .logo-caja{height:42px;padding:3px}
+  .logo-caja .logo-completo{display:none}
+  .logo-caja .emblema{display:block;width:34px;height:34px}
+  .barra-derecha{gap:5px}
+  .pestanas{gap:5px}
+  .pestana,.btn-salir{padding:0 11px}
+  .bienvenida-titulo{font-size:24px}
+  .buscador-inicio{margin:20px 0 22px}
+  .cifras{grid-template-columns:1fr 1fr;gap:12px;margin-bottom:28px}
+  .cifra{flex-direction:column;align-items:flex-start;gap:10px;padding:16px}
+  .cifra-ico{width:40px;height:40px;border-radius:12px}
+  .cifra-valor{font-size:22px}
 }
 @media (max-width:760px){
   .contenido{padding:20px 16px 32px}
@@ -443,36 +509,42 @@ html[data-theme="dark"] #aviso{background:#e6edf3;color:#0d1319}
 <div id="app" hidden>
   <header class="barra">
     <a class="marca" href="#/" title="Inicio">
-      <span class="emblema-caja"><img class="emblema" alt=""></span>
-      <span class="marca-txt"><b>Panel de control</b><small>SINUGRAVAS S.A.S.</small></span>
+      <span class="logo-caja"><img class="logo-completo" alt="SINUGRAVAS S.A.S."><img class="emblema" alt=""></span>
+      <span class="marca-txt"><b>Panel de control</b><small>Portal corporativo de SINUGRAVAS</small></span>
     </a>
-    <nav class="pestanas" id="pestanas" aria-label="Secciones" hidden>
-      <a class="pestana" href="#/" data-vista=""><span data-ico="inicio"></span>Inicio</a>
-      <a class="pestana" href="#/usuarios" data-vista="usuarios"><span data-ico="personas"></span>Usuarios y accesos</a>
-      <a class="pestana" href="#/bitacora" data-vista="bitacora"><span data-ico="reloj"></span>Bitácora</a>
-    </nav>
     <div class="barra-derecha">
+      <nav class="pestanas" id="pestanas" aria-label="Secciones" hidden>
+        <a class="pestana" href="#/" data-vista="" id="pestana-inicio" title="Inicio"><span data-ico="inicio"></span><span>Inicio</span></a>
+        <a class="pestana" href="#/usuarios" data-vista="usuarios" title="Usuarios y accesos"><span data-ico="personas"></span><span>Usuarios y accesos</span></a>
+        <a class="pestana" href="#/bitacora" data-vista="bitacora" title="Bitácora"><span data-ico="reloj"></span><span>Bitácora</span></a>
+      </nav>
       <button type="button" class="btn-icono" data-tema title="Cambiar el tema"></button>
       <button type="button" class="yo" id="btn-yo" title="Mi perfil">
-        <span id="yo-avatar"></span>
         <span class="yo-txt"><b id="yo-nombre"></b><small id="yo-rol"></small></span>
+        <span id="yo-avatar"></span>
       </button>
-      <button type="button" class="btn btn-sec btn-salir" id="btn-salir" title="Salir del panel"><span data-ico="salir"></span><span>Salir</span></button>
+      <button type="button" class="btn-salir" id="btn-salir" title="Salir del panel"><span data-ico="salir"></span><span>Salir</span></button>
     </div>
   </header>
 
   <main class="contenido">
     <!-- Inicio -->
     <section id="vista-inicio">
-      <div class="cabeza">
-        <div>
-          <h1 id="saludo">Hola</h1>
-          <p id="saludo-sub">Elija el módulo al que quiere entrar.</p>
-        </div>
+      <h1 class="bienvenida-titulo" id="saludo">¡Hola! 👋</h1>
+      <p class="bienvenida-sub">Centro de operaciones para todos los módulos de SINUGRAVAS S.A.S.</p>
+      <p class="bienvenida-pista" id="saludo-sub">Seleccione un módulo para comenzar.</p>
+      <div class="pedir-nombre" id="pedir-nombre" hidden>
+        <span class="pn-ico"><span data-ico="lapiz" data-tam="20"></span></span>
+        <div class="pn-txt"><b>Escriba su nombre.</b> Así el panel le da la bienvenida por su nombre. Es el mismo nombre que reciben los módulos.</div>
+        <button type="button" class="btn btn-primario" id="btn-pedir-nombre">Escribir mi nombre</button>
       </div>
-      <div id="resumen" class="resumen" hidden></div>
-      <h2 class="subtitulo" id="titulo-modulos">Sus módulos</h2>
-      <div id="tarjetas" class="modulos"></div>
+      <div class="buscador-inicio" id="buscador-inicio">
+        <span data-ico="buscar"></span>
+        <input type="search" id="buscar-modulo" placeholder="Buscar módulo…" autocomplete="off" aria-label="Buscar módulo">
+      </div>
+      <div id="resumen" class="cifras"></div>
+      <h2 class="titulo-seccion" id="titulo-modulos">Sus módulos</h2>
+      <div id="tarjetas" class="tarjetas"></div>
     </section>
 
     <!-- Usuarios y accesos (solo administradores generales) -->
@@ -1340,7 +1412,7 @@ function mostrarIngreso(msg, ok) {
   yo = null; modulos = []; usuarios = null; catalogo = null; bitacora = null;
   // Lo que quedó pintado de la sesión anterior no se queda en la página
   $('tarjetas').innerHTML = ''; $('resumen').innerHTML = ''; $('u-filas').innerHTML = ''; $('b-filas').innerHTML = '';
-  $('u-buscar').value = ''; $('b-buscar').value = '';
+  $('u-buscar').value = ''; $('b-buscar').value = ''; $('buscar-modulo').value = '';
   cerrarFicha(true); cerrarDialogo(); responderPregunta(false);
   $('app').hidden = true; $('ingreso').hidden = false;
   modoIngreso('ingreso');
@@ -1561,6 +1633,9 @@ async function refrescarInicio() {
   if (!$('vista-inicio').hidden) pintarInicio();
 }
 
+// Una cuenta sin nombre trae el correo en su lugar
+function sinNombre(p) { return !p?.nombre || p.nombre.trim().toLowerCase() === String(p.correo || '').trim().toLowerCase(); }
+
 function pintarCabecera() {
   $('yo-avatar').innerHTML = avatar(yo);
   $('yo-nombre').textContent = yo.nombre;
@@ -1580,6 +1655,7 @@ async function mostrarVista() {
   $('vista-usuarios').hidden = v !== 'usuarios';
   $('vista-bitacora').hidden = v !== 'bitacora';
   document.querySelectorAll('.pestana').forEach(p => p.classList.toggle('activa', p.dataset.vista === v));
+  $('pestana-inicio').hidden = v === '';
   if (v === 'usuarios') { if (!usuarios) await cargarUsuarios(); pintarFiltro(); pintarUsuarios(); }
   else if (v === 'bitacora') await cargarBitacora();
   else pintarInicio();
@@ -1587,7 +1663,7 @@ async function mostrarVista() {
 }
 window.addEventListener('hashchange', () => { if (yo) mostrarVista(); });
 
-// ── Inicio: las tarjetas de los módulos ─────────────────────────────
+// ── Inicio: como el del Portal de Don Aseo, con los colores de SINUGRAVAS ──
 const PALABRAS_ACCION = { ver: 'ver', editar: 'editar', eliminar: 'eliminar', configurar: 'configurar el módulo', pagar: 'registrar pagos', medico: 'llevar los seguimientos médicos' };
 function queHace(acciones) {
   const l = (acciones || []).map(a => PALABRAS_ACCION[a] || a);
@@ -1599,58 +1675,112 @@ function saludo() {
 }
 
 function pintarInicio() {
-  $('saludo').textContent = `${saludo()}, ${primerNombre(yo.nombre)}`;
-  const tarjetas = $('tarjetas');
+  const conNombre = !sinNombre(yo);
+  $('saludo').textContent = `¡${saludo()}${conNombre ? ', ' + primerNombre(yo.nombre) : ''}! 👋`;
+  $('pedir-nombre').hidden = conNombre || !yo.activo;
+  const visibles = yo.activo ? modulos.filter(m => m.acceso || yo.es_admin) : [];
+  $('saludo-sub').textContent = visibles.length ? 'Seleccione un módulo para comenzar. Se abre en otra pestaña.' : '';
+  $('buscador-inicio').hidden = !visibles.length;
+  $('resumen').hidden = $('titulo-modulos').hidden = !yo.activo;
   if (!yo.activo) {
-    $('saludo-sub').textContent = '';
-    $('resumen').hidden = true; $('titulo-modulos').hidden = true;
-    tarjetas.innerHTML = `<div class="aviso-suspendida">${ico('candado', 22)}<div><b>Su cuenta está suspendida.</b><br>No puede entrar a ningún módulo. Si cree que es un error, hable con el administrador.</div></div>`;
+    $('tarjetas').innerHTML = `<div class="aviso-suspendida">${ico('candado', 22)}<div><b>Su cuenta está suspendida.</b><br>No puede entrar a ningún módulo. Si cree que es un error, hable con el administrador.</div></div>`;
     return;
   }
-  $('titulo-modulos').hidden = false;
-  const visibles = modulos.filter(m => m.acceso || yo.es_admin);
-  $('saludo-sub').textContent = visibles.length ? 'Elija el módulo al que quiere entrar. Se abre en otra pestaña.' : '';
   $('titulo-modulos').textContent = yo.es_admin ? 'Módulos' : 'Sus módulos';
   pintarResumen();
+  pintarTarjetas();
+}
+
+// Dibujos propios para el fondo de cada tarjeta (sin imágenes de afuera). Toman el color del
+// módulo (c1, c2, c3) y el naranja de SINUGRAVAS (c5); en Facturación, que ya es naranja, c5 es el azul.
+const ILUSTRACIONES = {
+  flota: `<svg viewBox="0 0 200 150"><circle class="c2" cx="124" cy="76" r="60"/><path class="l3" d="M6 125h184"/>
+    <path class="c5c" d="M8 125c5-13 14-19 24-19s19 6 24 19z"/><circle class="c5" cx="22" cy="119" r="2.6"/><circle class="c5" cx="34" cy="114" r="2.4"/><circle class="c5" cx="43" cy="120" r="2.6"/>
+    <path class="c5" d="M58 66c7-14 20-20 33-18 14-2 27 5 35 18z"/><circle class="c5c" cx="76" cy="58" r="3"/><circle class="c5c" cx="92" cy="53" r="2.6"/><circle class="c5c" cx="106" cy="57" r="3"/><circle class="c5c" cx="117" cy="62" r="2.2"/>
+    <path class="c1" d="M52 66h80l-6 36H58z"/><path class="l6" d="M74 72v24M92 72v24M110 72v24"/>
+    <path class="c1" d="M134 74h20l16 18v14h-36z"/><path class="c6" d="M141 79h10l11 12h-21z"/><rect class="c5" x="165" y="95" width="5" height="5" rx="1.2"/>
+    <rect class="c4" x="48" y="102" width="124" height="8" rx="3"/>
+    <circle class="c4" cx="72" cy="114" r="11"/><circle class="c7" cx="72" cy="114" r="4.5"/><circle class="c4" cx="98" cy="114" r="11"/><circle class="c7" cx="98" cy="114" r="4.5"/>
+    <circle class="c4" cx="152" cy="114" r="11"/><circle class="c7" cx="152" cy="114" r="4.5"/></svg>`,
+  rh: `<svg viewBox="0 0 200 150"><circle class="c2" cx="124" cy="76" r="60"/>
+    <rect class="c6b" x="100" y="14" width="84" height="56" rx="9"/><path class="c1" d="M100 23a9 9 0 0 1 9-9h66a9 9 0 0 1 9 9v4h-84z"/>
+    <circle class="c3" cx="121" cy="47" r="11"/><circle class="c6" cx="121" cy="44" r="4"/><path class="c6" d="M113 55a8 6 0 0 1 16 0z"/>
+    <path class="l3" d="M140 40h32M140 50h24M140 60h28"/>
+    <circle class="c5" cx="182" cy="16" r="10"/><path class="l6" d="M177 16.5l3.4 3.4 6-6.6"/>
+    <path class="l3" d="M30 136h160"/>
+    <circle class="c1" cx="78" cy="86" r="13"/><path class="c1" d="M56 136c0-19 10-31 22-31s22 12 22 31z"/>
+    <circle class="c5" cx="124" cy="96" r="11"/><path class="c5" d="M105 136c0-16 9-26 19-26s19 10 19 26z"/>
+    <circle class="c3" cx="164" cy="102" r="9.5"/><path class="c3" d="M148 136c0-14 7-22 16-22s16 8 16 22z"/></svg>`,
+  facturacion: `<svg viewBox="0 0 200 150" style="--ac:var(--brand-500)"><circle class="c2" cx="124" cy="76" r="60"/><path class="l3" d="M24 134h166"/>
+    <path class="c6b" d="M90 18h70v100l-7-5-7 5-7-5-7 5-7-5-7 5-7-5-7 5-7-5-7 5z"/>
+    <rect class="c5" x="100" y="30" width="30" height="7" rx="3.5"/><path class="l3" d="M100 50h50M100 62h50M100 74h34"/><rect class="c5" x="122" y="92" width="28" height="8" rx="4"/>
+    <path class="c1" d="M46 122v6a18 6 0 0 0 36 0v-6z"/><ellipse class="c3" cx="64" cy="122" rx="18" ry="6"/>
+    <path class="c1" d="M46 113v6a18 6 0 0 0 36 0v-6z"/><ellipse class="c3" cx="64" cy="113" rx="18" ry="6"/>
+    <path class="c1" d="M46 104v6a18 6 0 0 0 36 0v-6z"/><ellipse class="c3" cx="64" cy="104" rx="18" ry="6"/>
+    <circle class="c3" cx="170" cy="112" r="17"/><circle class="c1" cx="170" cy="112" r="13"/>
+    <path class="l6" d="M174.5 106.5c-.9-1.6-2.5-2.5-4.5-2.5-2.6 0-4.5 1.5-4.5 3.6 0 5 9.3 2.8 9.3 8 0 2.2-2 3.9-4.8 3.9-2.2 0-4-1-5-2.7M170 101.5v2.5M170 119.5v2.5"/></svg>`,
+  otro: `<svg viewBox="0 0 200 150"><circle class="c2" cx="124" cy="76" r="60"/>
+    <rect class="c3" x="96" y="38" width="38" height="38" rx="9"/><rect class="c1" x="142" y="38" width="38" height="38" rx="9"/>
+    <rect class="c5" x="96" y="84" width="38" height="38" rx="9"/><rect class="c6b" x="142" y="84" width="38" height="38" rx="9"/></svg>`,
+};
+
+function pintarTarjetas() {
+  const texto = $('buscar-modulo').value.trim();
+  const q = texto.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '');
+  const visibles = modulos.filter(m => m.acceso || yo.es_admin);
+  const lista = visibles.filter(m => !q || `${m.nombre} ${m.descripcion || ''}`.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '').includes(q));
+  const tarjetas = $('tarjetas');
   if (!visibles.length) {
     tarjetas.innerHTML = `<div class="vacio" style="grid-column:1/-1">${ico('candado', 28)}<p>Todavía no tiene acceso a ningún módulo.<br>Pídaselo al administrador.</p></div>`;
     return;
   }
-  tarjetas.innerHTML = visibles.map(m => {
-    const color = m.color || '#2a52ad';
+  if (!lista.length) {
+    tarjetas.innerHTML = `<div class="vacio" style="grid-column:1/-1">${ico('buscar', 28)}<p>Ningún módulo coincide con «${esc(texto)}».</p></div>`;
+    return;
+  }
+  tarjetas.innerHTML = lista.map(m => {
     const abierta = m.acceso && m.url;
-    return `<article class="modulo${abierta ? '' : ' modulo-cerrado'}" style="--mc:${esc(color)}">
-      <div class="modulo-cabeza">
-        <span class="modulo-icono">${ico(m.icono, 24)}</span>
-        <div class="modulo-nombre">${esc(m.nombre)}</div>
-      </div>
-      <p class="modulo-desc">${esc(m.descripcion || '')}</p>
-      ${m.acceso ? `<div class="modulo-rol"><span class="chip ${claseRol(m.rol === 'admin_general' ? null : m.acciones, m.rol === 'admin_general')}">${esc(m.rol_nombre || m.rol || '')}</span><span>${esc(queHace(m.acciones))}</span></div>` : ''}
-      <div class="modulo-pie">
-        ${abierta ? `<span class="modulo-nota">${m.pase ? 'Entra directo, sin volver a escribir la contraseña' : 'El módulo le pedirá su contraseña'}</span>
-                     <button type="button" class="btn btn-primario" data-entrar="${esc(m.clave)}">Entrar ${ico('flecha', 16)}</button>`
-                  : `<span class="modulo-nota">${m.url ? 'No tiene acceso a este módulo' : 'Este módulo todavía no tiene dirección'}</span>
-                     <button type="button" class="btn btn-sec" disabled>${ico('candado', 16)} Sin acceso</button>`}
-      </div>
-    </article>`;
+    return `<div class="tarjeta-modulo${abierta ? '' : ' cerrada'}" style="--mc:${esc(m.color || '#2a52ad')}"${abierta ? ` data-entrar="${esc(m.clave)}" role="button" tabindex="0"` : ''}>
+      <span class="tm-ilu" aria-hidden="true">${ILUSTRACIONES[m.clave] || ILUSTRACIONES.otro}</span>
+      <span class="tm-icono">${ico(m.icono, 28)}</span>
+      <div class="tm-nombre">${esc(m.nombre)}</div>
+      <p class="tm-desc">${esc(m.descripcion || '')}</p>
+      ${m.acceso ? `<span class="tm-acceso" title="${esc(queHace(m.acciones))}">Su acceso: ${esc(m.rol_nombre || m.rol || '')}</span>` : ''}
+      ${abierta ? `<span class="tm-entrar">Entrar ${ico('flecha', 16)}</span>`
+                : `<span class="tm-cerrada">${ico('candado', 15)}${m.url ? 'No tiene acceso a este módulo' : 'Este módulo todavía no tiene dirección'}</span>`}
+    </div>`;
   }).join('');
 }
 $('tarjetas').addEventListener('click', ev => {
-  const b = ev.target.closest('[data-entrar]');
-  if (b) entrarModulo(b.dataset.entrar);
+  const t = ev.target.closest('[data-entrar]');
+  if (t) entrarModulo(t.dataset.entrar);
 });
+$('tarjetas').addEventListener('keydown', ev => {
+  const t = (ev.key === 'Enter' || ev.key === ' ') && ev.target.closest('[data-entrar]');
+  if (!t) return;
+  ev.preventDefault();
+  entrarModulo(t.dataset.entrar);
+});
+$('buscar-modulo').addEventListener('input', pintarTarjetas);
+$('btn-pedir-nombre').addEventListener('click', () => abrirMiPerfil());
 
 function pintarResumen() {
-  const caja = $('resumen');
-  if (!yo.es_admin || !usuarios) { caja.hidden = true; return; }
-  const sinAcceso = usuarios.filter(u => !u.es_admin && !Object.keys(u.accesos || {}).length).length;
-  const tarjeta = (icono, color, valor, texto, filtro) => `<button type="button" class="dato" style="--dc:${color}" data-filtro="${filtro}">
-      <span class="dato-ico">${ico(icono, 21)}</span><span><span class="dato-valor">${valor}</span><span class="dato-txt" style="display:block">${texto}</span></span></button>`;
-  caja.innerHTML = tarjeta('personas', '#2a52ad', usuarios.length, 'Personas con cuenta', '')
-    + tarjeta('admin', '#6d4aca', usuarios.filter(u => u.es_admin).length, 'Administradores generales', 'admins')
-    + tarjeta('candado', '#c8860d', sinAcceso, 'Sin acceso a ningún módulo', 'ninguno')
-    + tarjeta('pausa', '#c8372d', usuarios.filter(u => !u.activo).length, 'Cuentas suspendidas', 'suspendidas');
-  caja.hidden = false;
+  const cifra = (icono, color, valor, titulo, sub, filtro) => {
+    const boton = filtro !== undefined;
+    return `<${boton ? `button type="button" data-filtro="${filtro}"` : 'div'} class="cifra" style="--cc:${color}">
+      <span class="cifra-ico">${ico(icono, 24)}</span>
+      <span><span class="cifra-valor">${valor}</span><span class="cifra-titulo">${titulo}</span><span class="cifra-sub">${sub}</span></span></${boton ? 'button' : 'div'}>`;
+  };
+  let html = cifra('modulo', 'var(--accent)', modulos.filter(m => m.acceso && m.url).length, 'Módulos disponibles', 'Activos para su cuenta');
+  if (yo.es_admin && usuarios) {
+    const conAcceso = usuarios.filter(u => u.es_admin || Object.keys(u.accesos || {}).length).length;
+    const suspendidas = usuarios.filter(u => !u.activo).length;
+    html += cifra('personas', 'var(--sun-500)', usuarios.length, 'Personas con cuenta',
+        `${conAcceso} con acceso a algún módulo${suspendidas ? ` · ${suspendidas} ${suspendidas === 1 ? 'suspendida' : 'suspendidas'}` : ''}`, '')
+      + cifra('admin', 'var(--violet-500)', usuarios.filter(u => u.es_admin).length, 'Administradores generales', 'Dan y quitan accesos', 'admins');
+  }
+  html += cifra('bien', 'var(--ok-500)', 'Operativo', 'Estado del sistema', '<span class="punto"></span>Panel y base de datos en línea');
+  $('resumen').innerHTML = html;
 }
 $('resumen').addEventListener('click', ev => {
   const b = ev.target.closest('[data-filtro]');
@@ -1839,7 +1969,7 @@ function accionesCuenta(u) {
 function panelCuenta(u) {
   if (fichaPanel === 'datos') return `
       <label class="etiqueta" for="p-nombre">Nombre completo</label>
-      <input class="campo" id="p-nombre" value="${esc(u.nombre)}" maxlength="80" autocomplete="off">
+      <input class="campo" id="p-nombre" value="${sinNombre(u) ? '' : esc(u.nombre)}" maxlength="80" autocomplete="off" placeholder="Nombre y apellido">
       <label class="etiqueta" for="p-cargo">Cargo</label>
       <input class="campo" id="p-cargo" value="${esc(u.cargo || '')}" maxlength="80" autocomplete="off" placeholder="Por ejemplo: Auxiliar contable">
       <p class="ayuda">Es el mismo en todos los módulos.</p>
@@ -2176,12 +2306,13 @@ document.addEventListener('submit', async ev => {
   aviso(`Cuenta creada para ${primerNombre(nombre)}. Ahora elija a qué módulos entra.`, 'ok');
 });
 
-$('btn-yo').addEventListener('click', () => {
+$('btn-yo').addEventListener('click', () => abrirMiPerfil());
+function abrirMiPerfil() {
   abrirDialogo(`<h2>Mi perfil</h2>
     <p class="dialogo-sub">${esc(yo.correo)}${yo.es_admin ? ' · Administrador general' : ''}</p>
     <form id="form-perfil" novalidate>
       <label class="etiqueta" for="mi-nombre">Nombre completo</label>
-      <input class="campo" id="mi-nombre" value="${esc(yo.nombre)}" maxlength="80" autocomplete="name">
+      <input class="campo" id="mi-nombre" value="${sinNombre(yo) ? '' : esc(yo.nombre)}" maxlength="80" autocomplete="name" placeholder="Su nombre y apellido">
       <label class="etiqueta" for="mi-cargo">Cargo</label>
       <input class="campo" id="mi-cargo" value="${esc(yo.cargo || '')}" maxlength="80" autocomplete="organization-title">
       <div class="dialogo-pie"><button type="submit" class="btn btn-primario">Guardar nombre y cargo</button></div>
@@ -2197,7 +2328,7 @@ $('btn-yo').addEventListener('click', () => {
       <div class="dialogo-pie"><button type="button" class="btn btn-sec" data-cerrar-dialogo>Cerrar</button>
         <button type="submit" class="btn btn-primario">Cambiar la contraseña</button></div>
     </form>`);
-});
+}
 document.addEventListener('submit', async ev => {
   if (ev.target.id === 'form-perfil') {
     ev.preventDefault();
